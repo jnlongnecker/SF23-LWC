@@ -1,0 +1,58 @@
+Scratch Orgs
+
+- Blank, temporary orgs designed for feature development and release
+- Scratch Orgs last for 1-30 days, with 7 being the default
+- We can have up to 10 active Scratch Orgs at a time
+- Their emptiness makes them very handy for developing a new feature
+    - Don't have to know what is default in SF and what we developed
+    - Don't have to be specific with a manifest; because EVERYTHING is what we developed
+- Can use new sfdx commands to work with Scratch Orgs
+    - sfdx force:source:push
+    - sfdx force:source:pull
+    - These allow you to only retrieve what you wrote in the Scratch Org and only push what was modified
+- Using a sandbox still has you working with metadata you configured earlier
+    - These configurations are sometimes intrusive
+    - We only have so many Developer and Developer Pro licenses
+    - If you need more licenses, you have to buy them
+    - This can get expensive if you have a lot of smaller features that need to be isolated while developing
+- Sometimes, you want to upskill or develop features for a technology that your org hasn't purchased
+    - Scratch Orgs allow you to configure which features are available
+    - Many features you need to purchase are readily available in a Scratch Org
+    - We can also preview features in an upcoming Salesforce release
+- For a rapid start on development, all features can be enabled by default for a Scratch Org
+    - EX: Communities, Multiple Currencies, Knowledge, etc.
+    - Features can also be configured by default:
+        - EX: Case support email, sharing model, record types, etc.
+- Scratch Orgs pair naturally with Package-Based Development (PBD)
+    - PBD is a development strategy where features are divided into standalone packages for organization and deployment
+        - PBD packages are unlocked packages
+        - Unlocked packages are built off a Dev Hub, just like Scratch Orgs
+    - Since Scratch Orgs are blank, we can deploy our package code to the org and only be working with the package
+    - Since packages should be standalone, we don't have to worry about interaction from other features while developing
+    - PBD pairs well with source control and continuous integration because of you reliance on SFDX project and CLI
+- Scratch Orgs are built off of a Dev Hub
+    - A Dev Hub is just an org (typically Developer Edition or Sandbox) that is enabled as a Dev Hub
+    - We can enable this in Setup > Development > Dev Hub
+    - Since Scratch Orgs are built FROM a Dev Hub, that 10 limit is PER Dev Hub
+    - We then use a Scratch Org definition file to define the shape of the Scratch Org
+        - Shape of the org = Features enabled and default configurations
+- Scratch Orgs can be built using the shape of an existing org
+    - Allow a Dev Hub to use an org's shape by configuring the source org:
+        - Setup > Development > Org Shape
+        - Enable Org Shape
+        - Paste the ID of the Dev Hub in the box to allow that Dev Hub to use this org's shape
+    - Create a Scratch Org definition file that looks like this:
+        {
+            "orgName": "myOrg",
+            "sourceOrg": "00DDm000000HJnF"
+        }
+    - Ensure that the "sourceOrg" property is the ID of the org we configured above
+    - You can find org ID's in the Company Information tab of Setup
+
+
+To Work with the local development server for LWC:
+- Install Node.js : https://nodejs.org/en
+- Run: npm install -g node-gyp
+- Run: sfdx plugins:install @salesforce/lwc-dev-server
+    - Optionally for mobile, also run: sfdx plugins:install @salesforce/lwc-dev-mobile
+- Use the command palette to start and stop the local server
