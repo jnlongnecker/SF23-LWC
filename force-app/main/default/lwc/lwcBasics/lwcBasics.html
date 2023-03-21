@@ -1,0 +1,118 @@
+<!--
+		Lightning Web Components (LWC)
+		- Allows you to reuse markup and css and js associated with the markup
+		- These bundles are called components
+		- Restructure your understanding of how web pages are made with components!
+
+		- Salesforce has many ready-made components for us to use:
+			https://developer.salesforce.com/docs/component-library/overview/components
+		- Lightning web components are lightweight (fast) and run natively in the browser
+		- There are some features that only support aura currently (but not many)
+			https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.get_started_supported_experiences
+		- LWC are also open source, so you don't have to be running SF to use LWC
+
+		- LWC are often used to make Single Page Applications (or SPA)
+			- A web application that does NOT have to navigate you to multiple pages to complete
+			- LWC achieve this through something called conditional rendering 
+				- Choosing what to display based on criteria
+		
+		Component Bundle
+		- Components live in a folder called the component bundle. 
+		- This folder and it's bundled files have some naming requirements:
+			- Must begin with a lowercase letter
+			- Must contain only alphanumeric or underscore characters ([a-zA-Z_0-9])
+			- Must be unique in the namespace
+			- Can't include whitespace
+			- Can't end in an underscore
+			- Can't contain 2 consecutive underscores
+			- Can't contain a hyphen
+		- This boils down to: camelCase your names and don't use anything but letters
+
+		- But wait, custom html elements MUST have a hyphen, right?
+		- LWC framework will generate the name of the actual component using a formula:
+			- namespace-component-name
+			- This naming convention is called kebab-case
+			- So essentially, we convert from camelCase to kebab-case and prepend the namespace
+		- In platform LWC, our namespace is ALWAYS c
+			- You can get a different namespace in a managed package, but otherwise it's always c
+			- So, our components are going to look like this:
+				- c-component-name
+		- Component bundle files:
+			- HTML : A normal HTML that starts with the <template> tag
+			- JS : The code for the component and the component definition
+			- Meta : A .js-meta.xml file that is used for Salesforce
+			- OPTIONAL FILES:
+				- CSS : Contains style declarations for the component
+				- SVG : Contains a svg icon for the component to identify it in the Lightning App Builder
+			- All of these files MUST HAVE the same name as the component bundle
+-->
+
+<template>
+
+	<h1 class="slds-text-heading_large">Click the button to display some text!</h1>
+	<lightning-button label="Click Me!" variant="brand" onclick={handleClick}></lightning-button>
+	<!--
+			A directive is a special attribute given by the LWC framework that allows us to give special functionality
+			to the element it is attached to.
+
+			This is TYPICALLY the template element, but some directives work without the template.
+
+			The if:true directive will conditionally render the content inside it.
+				- This actually inserts or removes the content from the DOM
+			The if:false directive does the same as the if:true, but only if the value is falsey
+			The lwc:if directive does the same as the if:true directive
+			The lwc:ifelse must be connected with a lwc:if and will render the content if the first template is false
+			The lwc:else is as the end of a lwc:if lwc:ifelse chain and renders the content if all above are false
+
+		  - The if:true and if:false are not recommended to be used anymore as they may be deprecated in the future
+	-->
+	<template if:true={showPreference}>
+		<p>I really like the guitarist Mark Morton.</p>
+	</template>
+	<template if:true={showHidden}>
+		<p>Click the button to see my guitarist preference!</p>
+	</template>
+	<template if:true={showConfirmation}>
+		<p>Do you really wanna see?</p>
+	</template>
+
+	<!--
+			- The for:each directive iterates over an array and stores each item in a variable named
+				after the for:item text
+			- We can then access the values of the item by using expressions an using the text in
+				for:item like a variable
+			- The key is going to uniquely identify a particular item in the list
+				- Key must be unique
+				- Key must be present for all direct children of the template
+			- Not pictured here, but we can also access the index using for:index
+
+			- The iterator:iteratorName directive also iterates over an array and stores each item in
+				a variable called "iteratorName" that we define
+			- We can access information about the iteration using properties on this variable:
+				- .value : The value of the item
+				- .first : True if this is the first item
+				- .last : True if this is the last item
+				- .index : Returns the index of the current item
+	-->
+	<div class="slds-grid slds-gutters">
+		<div class="slds-col">
+			<template for:each={guitarists} for:item="guitarist">
+				<div key={guitarist.name}>
+					<p>{guitarist.name}: {guitarist.metalRating}</p>
+					<img src={guitarist.image}/>
+				</div>
+			</template>
+		</div>
+		<div class="slds-col">
+			<template iterator:item={guitarists}>
+				<div key={item.value.name}>
+					<hr if:true={item.first} />
+					<p>{item.value.name}: {item.value.metalRating}</p>
+					<img src={item.value.image}/>
+					<hr if:true={item.last} />
+				</div>
+			</template>
+		</div>
+	</div>
+
+</template>
