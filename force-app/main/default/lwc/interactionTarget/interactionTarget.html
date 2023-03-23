@@ -1,0 +1,24 @@
+<!--
+    Dynamic Interactions
+        - A way of communicating across an APP PAGE (only works for an app page currently)
+        - Involves no subscription or LMS
+        - Takes effort from both developers and admins
+
+        - A developer configures the meta file for a component to work with Dynamic Interactions
+        - Another component on the screen that has exposed properties can have values
+            passed in from the Dynamic Interaction event
+        - A Dynamic Interaction event is just a CustomEvent in a top-level component
+
+        - To configure a component as a publisher for Dynamic Interactions:
+            - <targetConfig>
+            - This must have an <event> element
+            - This <event> element must have a child <schema> element
+            - This <schema> element defines the shape of the CustomEvent data
+-->
+
+<template>
+    <lightning-card lwc:if={name}>
+        <p slot="title">{name}, Rating: {rating}</p>
+        <img src={image} />
+    </lightning-card>
+</template>

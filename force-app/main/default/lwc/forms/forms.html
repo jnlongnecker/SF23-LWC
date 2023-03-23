@@ -1,0 +1,21 @@
+<template>
+    <!-- 
+        Lightning Forms
+
+        - 3 kinds
+            - Lightning Record Form (lightning-record-form) : For both
+            - Lightning Record Edit Form (lightning-record-edit-form) : For editing/created a record
+            - Lightning Record View Form (lightning-record-view-form) : For viewing record details
+
+        - These forms use the UI API to efficiently create and request data and cache the results
+            - Caching the results means we have faster duplicate requests
+        - Take in an object api name to work for a particular object
+        - Take in a list of fields to display or a layout type (full or compact)
+        - Fires the submit event when the form is submitted
+        - Fires the success event when the form completes
+        - Fires the error event when the form fails
+    -->
+
+    <!-- Valid modes are edit, view and readonly -->
+    <lightning-record-form mode="edit" object-api-name="Account" layout-type="full"></lightning-record-form>
+</template>

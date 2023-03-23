@@ -1,0 +1,27 @@
+@import 'c/styleLibrary';
+
+img {
+    width: 300px;
+}
+
+div {
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+div:hover {
+    background-color: rgb(25,25,25,.15);
+    cursor: pointer;
+}
+
+.small {
+    width: 150px;
+}
+
+.normal {
+    width: 300px;
+}
+
+.large {
+    width: 450px;
+}

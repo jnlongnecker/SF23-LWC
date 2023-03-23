@@ -1,0 +1,9 @@
+<template>
+    <div if:true={guitarist} onclick={guitaristSelected}>
+        <h1>
+            <slot name="header"></slot>
+        </h1>
+        <p>{guitarist.name}: {guitarist.metalRating}</p>
+        <img class={imageSize} src={guitarist.image} />
+    </div>
+</template>

@@ -1,0 +1,72 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <template for:each={guitarists} for:item="guitarist">
+                <c-component-child image-size="small" guitarist={guitarist} key={guitarist.name}
+                    onselect={guitaristSelected}>
+                    <span slot="header">I love music!</span>
+                </c-component-child>
+            </template>
+        </div>
+        <div class="slds-col">
+            <c-component-child image-size="large" guitarist={chosenGuitarist}></c-component-child>
+        </div>
+    </div>
+    <p>Guitar is a super cool instrument and everyone should like it.</p>
+</template>
+
+<!--
+    The Shadow DOM
+        - Normally, in a webpage you have the DOM
+        - You can access any element from any part of the DOM using DOM selection methods
+            - document.querySelector()
+        - This is a problem with our components because they may contain sensitive information
+            - You don't want third-party tools to be able to access your component markup
+        - So, the Shadow DOM is used to provide encapsulation for HTML/CSS
+
+        - What is it?
+            - A web technology that encapsulates a portion of the DOM in a shadow tree
+        - Remember, the DOM structure is a tree
+        - Consequences of the Shadow DOM:
+            - CSS Styles stop cascading : Components can only style themselves or be styled by themselves
+            - Elements in the shadow tree cannot be queried for from document
+                - In order to query for elements in the shadow tree, use this.template.querySelector()
+                - Even though we CAN query, we should use the lwc:ref directive instead
+                - EX: lwc:ref="myElem"
+                    - In JS: this.refs.myElem to get the element in your JS
+            - Events that bubble and capture past the shadow boundary will change the target to match the scope
+                - Called event retargeting
+                - EX: I click on a child component
+                    - The child has an onclick event handler
+                    - The parent has an onclick event handler
+                        - The event.target property in the child will be the element clicked
+                        - The event.target property in the parent will be the child component
+            - Elements passed via a slot bypass the shadow boundary
+-->
+
+<!--
+    Lightning Locker and Lightning Web Security
+    - Lightning Locker is the default and the older version of security
+        - Lightning Locker is a lot more restrictive than Lightning Web Security
+    - Both run for all your LWC, so the process is automatic
+    - LWS runs JavaScript in isolated environments they call JavaScript sandboxes
+        - It's because of this that LWS is less restrictive
+        - There is a JavaScript sandbox for each namespace
+    - We can opt-into LWS by going to Setup > Session Settings and enabling LWS
+    - THIS ONLY IS IN EFFECT ON CLIENT SIDE
+        - ONLY DOES WEB SECURITY, NOT RECORD SECURITY
+    - Let's do a quick comparison of major differences/similarities between the two
+    - Full rundown: https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.security_lwsec_locker_comparison
+
+    - BOTH: Enforce JS in strict mode
+    - BOTH: Block non-secure API requests
+    - BOTH: Protect against attacks like XSS (Cross Site Scripting)
+    - LWS: Doesn't need to wrap window, document and element global objects in secure wrappers
+        - We can access these global objects directly
+    - LWS: Can access content in iFrames
+        - LL blocks content access in iFrames
+    - LWS: Better performance because it doesn't need secure wrappers
+    - LWS: Better support of third-party JS libraries
+    - LWS: Can import modules from any namespace
+        - LL can only import modules from the c and lightning namespaces
+-->

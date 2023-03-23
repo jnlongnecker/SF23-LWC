@@ -49,9 +49,9 @@
 
 <template>
 
-	<h1 class="slds-text-heading_large">Click the button to display some text!</h1>
-	<lightning-button label="Click Me!" variant="brand" onclick={handleClick}></lightning-button>
-	<!--
+    <h1 class="slds-text-heading_large">Click the button to display some text!</h1>
+    <lightning-button label="Click Me!" variant="brand" onclick={handleClick}></lightning-button>
+    <!--
 			A directive is a special attribute given by the LWC framework that allows us to give special functionality
 			to the element it is attached to.
 
@@ -66,17 +66,17 @@
 
 		  - The if:true and if:false are not recommended to be used anymore as they may be deprecated in the future
 	-->
-	<template if:true={showPreference}>
-		<p>I really like the guitarist Mark Morton.</p>
-	</template>
-	<template if:true={showHidden}>
-		<p>Click the button to see my guitarist preference!</p>
-	</template>
-	<template if:true={showConfirmation}>
-		<p>Do you really wanna see?</p>
-	</template>
+    <template if:true={showPreference}>
+        <p>I really like the guitarist Mark Morton.</p>
+    </template>
+    <template if:true={showHidden}>
+        <p>Click the button to see my guitarist preference!</p>
+    </template>
+    <template if:true={showConfirmation}>
+        <p>Do you really wanna see?</p>
+    </template>
 
-	<!--
+    <!--
 			- The for:each directive iterates over an array and stores each item in a variable named
 				after the for:item text
 			- We can then access the values of the item by using expressions an using the text in
@@ -94,25 +94,25 @@
 				- .last : True if this is the last item
 				- .index : Returns the index of the current item
 	-->
-	<div class="slds-grid slds-gutters">
-		<div class="slds-col">
-			<template for:each={guitarists} for:item="guitarist">
-				<div key={guitarist.name}>
-					<p>{guitarist.name}: {guitarist.metalRating}</p>
-					<img src={guitarist.image}/>
-				</div>
-			</template>
-		</div>
-		<div class="slds-col">
-			<template iterator:item={guitarists}>
-				<div key={item.value.name}>
-					<hr if:true={item.first} />
-					<p>{item.value.name}: {item.value.metalRating}</p>
-					<img src={item.value.image}/>
-					<hr if:true={item.last} />
-				</div>
-			</template>
-		</div>
-	</div>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <template for:each={guitarists} for:item="guitarist">
+                <div key={guitarist.name}>
+                    <p>{guitarist.name}: {guitarist.metalRating}</p>
+                    <img src={guitarist.image} />
+                </div>
+            </template>
+        </div>
+        <div class="slds-col">
+            <template iterator:item={guitarists}>
+                <div key={item.value.name}>
+                    <hr if:true={item.first} />
+                    <p>{item.value.name}: {item.value.metalRating}</p>
+                    <img src={item.value.image} />
+                    <hr if:true={item.last} />
+                </div>
+            </template>
+        </div>
+    </div>
 
 </template>

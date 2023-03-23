@@ -1,0 +1,6 @@
+<template>
+    <lightning-button label="Toggle Hooks" onclick={toggleHooks}></lightning-button>
+    <template if:true={showHooks}>
+        <c-lifecycle-hooks a="5" b="6"></c-lifecycle-hooks>
+    </template>
+</template>

@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Account Info">
+        <div class="slds-p-around_medium">
+            <p class="slds-align_absolute-center slds-text-heading_medium">
+                Basic Info from the Page: {wiredRecordName}
+            </p>
+            <hr />
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <h1 class="slds-text-heading_small">From Wire</h1>
+                    <template for:each={customRecordList} for:item="account">
+                        <p key={account.Name}>{account.Name}</p>
+                    </template>
+                </div>
+                <div class="slds-col">
+                    <h1 class="slds-text-heading_small">From Imperative Call</h1>
+                    <template for:each={recordList} for:item="account">
+                        <p key={account.Name}>{account.Name}</p>
+                    </template>
+                </div>
+            </div>
+
+        </div>
+    </lightning-card>
+</template>

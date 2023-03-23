@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Subscriber">
+        <div class="slds-p-around_medium">
+            <h1>Message History</h1>
+            <hr />
+            <template for:each={messageHistory} for:item="name">
+                <p key={name}>{name}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

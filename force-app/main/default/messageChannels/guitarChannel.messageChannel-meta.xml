@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Name of file should be channelName.messageChannel-meta.xml -->
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>guitarChannel</masterLabel>
+    <isExposed>true</isExposed>
+    <description>This is a channel for sending guitarist names.</description>
+    <lightningMessageFields>
+        <fieldName>name</fieldName>
+        <description>This is the name of the guitarist.</description>
+    </lightningMessageFields>
+</LightningMessageChannel>
