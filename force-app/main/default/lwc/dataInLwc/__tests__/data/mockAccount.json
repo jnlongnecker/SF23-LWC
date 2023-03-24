@@ -1,0 +1,26 @@
+{
+  "apiName": "Account",
+  "childRelationships": {},
+  "eTag": "576f16955771af354efbe05c2b983c2e",
+  "fields": {
+    "Id": {
+      "displayValue": null,
+      "value": "001DM00002C17RJYAZ"
+    },
+    "Name": {
+      "displayValue": null,
+      "value": "Mock Record"
+    },
+    "SystemModstamp": {
+      "displayValue": "3/23/2023, 10:06 AM",
+      "value": "2023-03-23T17:06:03.000Z"
+    }
+  },
+  "id": "001DM00002C17RJYAZ",
+  "lastModifiedById": "005DM000006dWjqYAE",
+  "lastModifiedDate": "2023-03-23T17:06:03.000Z",
+  "recordTypeId": "012000000000000AAA",
+  "recordTypeInfo": null,
+  "systemModstamp": "2023-03-23T17:06:03.000Z",
+  "weakEtag": 1679591163000
+}
